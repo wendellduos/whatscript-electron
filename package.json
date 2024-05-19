@@ -4,7 +4,8 @@
   "description": "Whatscript makes it easier to send messages to all your Whatsapp contacts",
   "main": "main.js",
   "scripts": {
-    "test": "dev"
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,10 @@
   "homepage": "https://github.com/wendellduos/whatscript-electron#readme",
   "devDependencies": {
     "electron": "^30.0.6"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "whatsapp-web.js": "^1.23.0"
   }
 }
