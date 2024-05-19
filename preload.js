@@ -1,8 +1,8 @@
-const { contextBridge, ipcRenderer } = require("electron");
+const { contextBridge, ipcRenderer } = require("electron/renderer");
 
-contextBridge.exposeInMainWorld("versions", {
-  node: () => process.versions.node,
-  chrome: () => process.versions.chrome,
-  electron: () => process.versions.electron,
-  ping: () => ipcRenderer.invoke("ping"),
+contextBridge.exposeInMainWorld("electronAPI", {
+  handleQr: (callback) =>
+    ipcRenderer.on("qr-code", (_event, qr) => callback(qr)),
+  onClientReady: (callback) =>
+    ipcRenderer.on("client-ready", (_event) => callback()),
 });
