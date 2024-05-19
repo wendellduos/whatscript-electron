@@ -1,0 +1,22 @@
+{
+  "name": "whatscript-electron",
+  "version": "1.0.0",
+  "description": "Whatscript makes it easier to send messages to all your Whatsapp contacts",
+  "main": "main.js",
+  "scripts": {
+    "test": "dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wendellduos/whatscript-electron.git"
+  },
+  "author": "wendel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wendellduos/whatscript-electron/issues"
+  },
+  "homepage": "https://github.com/wendellduos/whatscript-electron#readme",
+  "devDependencies": {
+    "electron": "^30.0.6"
+  }
+}
