@@ -15,9 +15,9 @@ window.electronAPI.handleQr((qr) => {
 
   new QRCode(qrDisplay, {
     text: qr,
-    width: 264,
-    height: 264,
-    colorDark: "#132f31",
+    width: 200,
+    height: 200,
+    colorDark: "#000",
     colorLight: "#fff",
     correctLevel: QRCode.CorrectLevel.H,
   });
