@@ -1,6 +1,6 @@
 ## Whatscript
 
-This is a tool to help automate [Whatsapp](https://www.whatsapp.com/) messagging to multitple contacts at once.
+This is a tool to help automate [Whatsapp](https://www.whatsapp.com/) messaging to multitple contacts at once.
 
 It uses [whatsapp-web.js](https://wwebjs.dev) for it's functionality and [Electron](https://www.electronjs.org/) to give it a native-like experience.
 
