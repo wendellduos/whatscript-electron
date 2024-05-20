@@ -52,7 +52,7 @@
             <small>Seja bem vindo(a)!</small>
             <input type="text" id="username" placeholder="Usuário" />
             <input type="password" id="password" placeholder="Senha" />
-            <input type="submit" value="Entrar" />
+            <input type="submit" id="login-btn" value="Entrar" />
           </div>
         </div>
       </section>
@@ -83,8 +83,13 @@
     </main>
 
     <div id="popup">
+      <div id="popup-img">
+        <img src="./assets/icons/whatsapp.svg" alt="icone" />
+      </div>
       <small id="popup-msg" class="center"></small>
     </div>
-    <script src="script.js"></script>
+    <script src="./scripts/helpers.js"></script>
+    <script src="./scripts/login.js"></script>
+    <!-- <script src="./scripts/script.js"></script> -->
   </body>
 </html>

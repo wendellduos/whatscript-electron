@@ -39,17 +39,3 @@ sendTestMessageBtn.addEventListener("click", () => {
 
   window.electronAPI.sendTestMessage(msgBody);
 });
-
-function popup(message, duration) {
-  const popupEl = document.getElementById("popup");
-  const popupMsgEl = document.getElementById("popup-msg");
-
-  popupEl.style.display = "block";
-
-  popupMsgEl.innerHTML = message;
-
-  setTimeout(() => {
-    popupEl.style.display = "none";
-    popupMsgEl.innerHTML = "";
-  }, duration);
-}
