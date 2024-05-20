@@ -1,6 +1,6 @@
 ## Whatscript
 
-![image](https://github.com/wendellduos/whatscript-electron/assets/113645033/0417a2fe-5a7b-4ee3-b968-062b3305f366)
+![image](https://github.com/wendellduos/whatscript-electron/assets/113645033/4b9a6a6e-bdd2-4bcf-bf5c-e019701c89ac)
 
 This is a tool to help automate [Whatsapp](https://www.whatsapp.com/) messaging to multitple contacts at once.
 
