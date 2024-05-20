@@ -1,5 +1,7 @@
 ## Whatscript
 
+![image](https://github.com/wendellduos/whatscript-electron/assets/113645033/0417a2fe-5a7b-4ee3-b968-062b3305f366)
+
 This is a tool to help automate [Whatsapp](https://www.whatsapp.com/) messaging to multitple contacts at once.
 
 It uses [whatsapp-web.js](https://wwebjs.dev) for it's functionality and [Electron](https://www.electronjs.org/) to give it a native-like experience.
