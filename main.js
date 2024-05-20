@@ -1,11 +1,16 @@
 const { app, BrowserWindow } = require("electron/main");
 const { Client, MessageMedia } = require("whatsapp-web.js");
 const path = require("node:path");
+const { ipcMain } = require("electron");
+const { eventNames } = require("node:process");
+
+let contactList = [];
+let user = {};
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
-    width: 1000,
-    height: 1264,
+    width: 1280,
+    height: 720,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
@@ -20,13 +25,45 @@ const createWindow = () => {
   });
 
   client.on("qr", (qr) => {
-    console.log(qr);
     mainWindow.webContents.send("qr-code", qr);
   });
 
-  client.on("ready", () => {
-    console.log("Client is ready!");
-    mainWindow.webContents.send("client-ready");
+  client.on("ready", async () => {
+    const allContacts = await client.getContacts();
+
+    // get user's own id/number
+    allContacts.forEach((contact) => {
+      if (
+        contact.isUser &&
+        contact.isWAContact &&
+        contact.isMyContact &&
+        !contact.isGroup &&
+        !contact.isBlocked
+      ) {
+        contactList.push({
+          name: contact.name,
+          number: contact.number,
+          id: contact.id._serialized,
+        });
+      }
+
+      if (contact.isMe) {
+        user.id = contact.id._serialized;
+        user.name = contact.pushname;
+      }
+    });
+
+    mainWindow.webContents.send("client-ready", user.name, contactList);
+  });
+
+  ipcMain.on("test-message", async (event, msg) => {
+    client.sendMessage(user.id, msg);
+  });
+
+  client.on("disconnected", () => {
+    mainWindow.webContents.send("user-disconnect");
+
+    client.destroy();
   });
 
   client.initialize();

@@ -1,50 +1,55 @@
-const mode = document.getElementById("mode");
-const messageBody = document.getElementById("message");
-const imageField = document.getElementById("image");
-
-const qrField = document.getElementById("qr");
-const qrMask = document.getElementById("qr-mask");
+const qrCodeSection = document.getElementById("qr-code-section");
+const qrDisplay = document.getElementById("qr-display");
+const formSection = document.getElementById("form-section");
+const messageInput = document.getElementById("message");
+const sendTestMessageBtn = document.getElementById("send-test-msg-btn");
 
 window.electronAPI.handleQr((qr) => {
-  generateQrCode(qr);
-});
+  qrDisplay.innerHTML = "";
 
-window.electronAPI.onClientReady(() => {
-  document.getElementById("status").innerHTML = "ready";
-});
-
-generateQrCode(`https://www.youtube.com/watch?v=dQw4w9WgXcQ`);
-
-// clear image input field to avoid false positives when sending message
-imageField.value = null;
-
-// update name of file selector to selected image's name
-const imageTitleField = document.getElementById("image-title");
-
-imageField.addEventListener("change", () => {
-  imageTitleField.innerHTML = imageField.files[0].name;
-});
-
-// trigger events on PROSSEGUIR button click
-document.getElementById("submit-form").addEventListener("click", () => {
-  const message = {
-    for: mode.value,
-    body: messageBody.value,
-    // image: () => {
-    // if (messageHasImage) {
-    //   new FormData().append("image", imageField.files[0]);
-    // }
-    // },
-  };
-});
-
-function generateQrCode(data) {
-  new QRCode(qrField, {
-    text: data,
+  new QRCode(qrDisplay, {
+    text: qr,
     width: 264,
     height: 264,
     colorDark: "#132f31",
     colorLight: "#fff",
     correctLevel: QRCode.CorrectLevel.H,
   });
+});
+
+window.electronAPI.onClientReady((userName, contacts) => {
+  formSection.style.display = "block";
+  qrCodeSection.style.display = "none";
+  qrDisplay.innerHTML = "";
+
+  popup(`<span class="bold">${userName}</span> conectado.`, 4000);
+
+  console.log(contacts);
+});
+
+window.electronAPI.onClientDisconenct(() => {
+  formSection.style.display = "none";
+  qrCodeSection.style.display = "block";
+
+  popup("Usuário desconectado.", 4000);
+});
+
+sendTestMessageBtn.addEventListener("click", () => {
+  const msgBody = messageInput.value;
+
+  window.electronAPI.sendTestMessage(msgBody);
+});
+
+function popup(message, duration) {
+  const popupEl = document.getElementById("popup");
+  const popupMsgEl = document.getElementById("popup-msg");
+
+  popupEl.style.display = "block";
+
+  popupMsgEl.innerHTML = message;
+
+  setTimeout(() => {
+    popupEl.style.display = "none";
+    popupMsgEl.innerHTML = "";
+  }, duration);
 }
