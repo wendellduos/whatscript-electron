@@ -4,11 +4,11 @@ loginBtn.addEventListener("click", () => {
   handleLogin();
 });
 
-window.addEventListener("keydown", ({ key }) => {
-  if (key === "Enter") {
-    handleLogin();
-  }
-});
+// window.addEventListener("keydown", ({ key }) => {
+//   if (key === "Enter") {
+//     handleLogin();
+//   }
+// });
 
 // this logic will be updated
 function handleLogin() {

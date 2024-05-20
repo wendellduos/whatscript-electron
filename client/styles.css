@@ -213,10 +213,72 @@ header #lettering {
 
 #form-section {
   display: none;
-  width: calc(100% - 2rem);
+  min-width: calc(450px - 2rem);
+}
+
+#form-section > h2 {
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+}
+
+#message {
+  width: 100%;
+  max-width: calc(500px + 1rem);
+  aspect-ratio: 4/2.5;
+  margin-block: 1rem;
   padding: 1rem;
-  margin: auto;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.2px;
+  line-height: 1.1rem;
+  resize: none;
+}
+
+#send-btns {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#send-btns #send-test-msg-btn {
+  width: calc(50% - 0.5rem);
+  max-width: 250px;
+  height: 2.5rem;
+  padding: 0.5rem;
+  border: solid 2px black;
+  border-radius: 3px;
+  background-color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: 0.2s background-color ease-out;
+}
+
+#send-btns #send-test-msg-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+#send-btns #send-msg-btn {
+  width: calc(50% - 0.5rem);
+  max-width: 250px;
+  height: 2.5rem;
+  padding: 0.5rem;
+  border: solid 2px black;
+  border-radius: 3px;
+  background-color: black;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: 0.2s background-color ease-out;
+}
+
+#send-btns #send-msg-btn:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
 }
 
 #contacts {
