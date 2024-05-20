@@ -27,17 +27,37 @@
     <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
   </head>
   <body>
-    <header>
+    <!-- <header>
       <img id="logo" src="./assets/img/logo.png" alt="logo da Whatscript" />
       <img
         id="lettering"
         src="./assets/img/lettering.png"
         alt="letreiro da Whatscript"
       />
-    </header>
+    </header> -->
 
     <main>
-      <section id="qr-code-section">
+      <section id="login">
+        <div id="login-wrp">
+          <img
+            src="./assets/img/workstation.jpg"
+            alt="imagem de um notebook junto à um telefone e planta"
+          />
+          <div id="login-form-wrp">
+            <img src="./assets/img/logo.png" alt="logo da Whatscript" />
+            <img
+              src="./assets/img/lettering.png"
+              alt="letreiro da Whatscript"
+            />
+            <small>Seja bem vindo(a)!</small>
+            <input type="text" id="username" placeholder="Usuário" />
+            <input type="password" id="password" placeholder="Senha" />
+            <input type="submit" value="Entrar" />
+          </div>
+        </div>
+      </section>
+
+      <!-- <section id="qr-code-section">
         <small class="center"
           >Escaneie o Código QR abaixo na opção
           <span class="bold">Dispositivos Conectados</span> em seu
@@ -59,7 +79,7 @@
         <button type="button" id="send-test-msg-btn">
           Mandar mensagem de teste
         </button>
-      </section>
+      </section> -->
     </main>
 
     <div id="popup">
