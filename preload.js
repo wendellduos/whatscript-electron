@@ -10,4 +10,5 @@ contextBridge.exposeInMainWorld("electronAPI", {
   onClientDisconenct: (callback) =>
     ipcRenderer.on("user-disconnect", (_event) => callback()),
   sendTestMessage: (msg) => ipcRenderer.send("test-message", msg),
+  sendMessage: (msg, ids) => ipcRenderer.send("send-message", msg, ids),
 });

@@ -1,8 +1,7 @@
 const { app, BrowserWindow } = require("electron/main");
-const { Client, MessageMedia } = require("whatsapp-web.js");
+const { Client } = require("whatsapp-web.js");
 const path = require("node:path");
 const { ipcMain } = require("electron");
-const { eventNames } = require("node:process");
 
 let contactList = [];
 let user = {};
@@ -58,6 +57,12 @@ const createWindow = () => {
 
   ipcMain.on("test-message", async (event, msg) => {
     client.sendMessage(user.id, msg);
+  });
+
+  ipcMain.on("send-message", async (event, msg, ids) => {
+    ids.forEach((id) => {
+      client.sendMessage(id, msg);
+    });
   });
 
   client.on("disconnected", () => {

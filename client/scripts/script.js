@@ -3,7 +3,9 @@ const qrDisplay = document.getElementById("qr-display");
 const formSection = document.getElementById("form-section");
 const messageInput = document.getElementById("message");
 const sendTestMessageBtn = document.getElementById("send-test-msg-btn");
+const sendMessageBtn = document.getElementById("send-msg-btn");
 const contactCheckboxes = document.getElementById("contact-checkboxes");
+const searchQueryField = document.getElementById("search-query");
 
 let userData = {
   name: "",
@@ -49,14 +51,61 @@ window.electronAPI.onClientDisconenct(() => {
   });
 });
 
+// send to user's own number
 sendTestMessageBtn.addEventListener("click", () => {
   const msgBody = messageInput.value;
-
   window.electronAPI.sendTestMessage(msgBody);
+});
+
+// send to all selected contacts
+sendMessageBtn.addEventListener("click", () => {
+  const userIds = [];
+  const checkedContacts = document.querySelectorAll(".contact-item:checked");
+
+  checkedContacts.forEach((contact) => {
+    userIds.push(contact.dataset.id);
+  });
+
+  const msgBody = messageInput.value;
+  window.electronAPI.sendMessage(msgBody, userIds);
+});
+
+// search
+searchQueryField.addEventListener("input", () => {
+  if (searchQueryField.value) {
+    updateContactListDisplay();
+  } else {
+    resetContactList();
+  }
 });
 
 function populateContactList(name, contactList) {
   contactList.forEach((contact, index) => {
-    contactCheckboxes.innerHTML += `<div class="contact-checkitem"><input type="checkbox" id="contact-${index}" data-id="${contact.id}" checked /><div><label class="contact-inner-align" for="contact-${index}">${contact.name}<small class="dim">+${contact.number}</small></label></div></div></div>`;
+    contactCheckboxes.innerHTML += `<div class="contact-checkitem" data-name="${contact.name.toLowerCase()}"><input type="checkbox" id="contact-${index}" class="contact-item" data-id="${
+      contact.id
+    }" checked /><div><label class="contact-inner-align" for="contact-${index}">${
+      contact.name
+    }<small class="dim">+${contact.number}</small></label></div></div></div>`;
+  });
+}
+
+function updateContactListDisplay() {
+  const searchQuery = searchQueryField.value.toLowerCase();
+  const contactCheckItems = document.querySelectorAll(".contact-checkitem");
+
+  contactCheckItems.forEach((contact) => {
+    if (!contact.dataset.name.includes(searchQuery)) {
+      contact.style.display = "none";
+    } else {
+      contact.style.display = "flex";
+    }
+  });
+}
+
+function resetContactList() {
+  const contactCheckItems = document.querySelectorAll(".contact-checkitem");
+
+  contactCheckItems.forEach((contact) => {
+    contact.style.display = "flex";
   });
 }
