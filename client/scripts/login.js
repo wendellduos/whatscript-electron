@@ -30,13 +30,11 @@ function handleLogin() {
 
     const loginSection = document.getElementById("login");
 
-    setTimeout(() => {
-      loginSection.style.opacity = "0";
-    }, 1000);
+    loginSection.style.opacity = "0";
 
     setTimeout(() => {
       loginSection.style.display = "none";
-    }, 1700);
+    }, 700);
   } else {
     popup("Usuário ou senha incorretos.", {
       duration: 4000,

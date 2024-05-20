@@ -27,14 +27,14 @@
     <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
   </head>
   <body>
-    <!-- <header>
+    <header>
       <img id="logo" src="./assets/img/logo.png" alt="logo da Whatscript" />
-      <img
-        id="lettering"
-        src="./assets/img/lettering.png"
-        alt="letreiro da Whatscript"
-      />
-    </header> -->
+
+      <button type="button" id="toggle-contacts-btn">
+        <img src="./assets/icons/users.svg" alt="icone de contatos" />
+        <small>CONTATOS</small>
+      </button>
+    </header>
 
     <main>
       <section id="login">
@@ -57,7 +57,18 @@
         </div>
       </section>
 
-      <!-- <section id="qr-code-section">
+      <section id="contacts">
+        <h2>Lista de Contatos <span id="contact-count"></span></h2>
+        <input
+          type="text"
+          id="search-query"
+          placeholder="Pesquisar contato..."
+        />
+
+        <div id="contact-checkboxes"></div>
+      </section>
+
+      <section id="qr-code-section">
         <small class="center"
           >Escaneie o Código QR abaixo na opção
           <span class="bold">Dispositivos Conectados</span> em seu
@@ -79,7 +90,7 @@
         <button type="button" id="send-test-msg-btn">
           Mandar mensagem de teste
         </button>
-      </section> -->
+      </section>
     </main>
 
     <div id="popup">
@@ -90,6 +101,6 @@
     </div>
     <script src="./scripts/helpers.js"></script>
     <script src="./scripts/login.js"></script>
-    <!-- <script src="./scripts/script.js"></script> -->
+    <script src="./scripts/script.js"></script>
   </body>
 </html>

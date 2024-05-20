@@ -1,3 +1,4 @@
+// needs to use a different method to enable multiple popups at once
 function popup(message, { duration = 5000, type = "info" }) {
   const popupEl = document.getElementById("popup");
   const popupImgEl = document.getElementById("popup-img");
