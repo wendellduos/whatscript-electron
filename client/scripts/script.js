@@ -40,7 +40,20 @@ window.electronAPI.onClientReady((userName, contacts) => {
   contactCount.innerText = contacts.length;
   contactCount.style.display = "inline";
 
-  populateContactList(userName, contacts);
+  contacts.forEach((contact, index) => {
+    contactCheckboxes.innerHTML += `<div class="contact-checkitem" data-name="${contact.name.toLowerCase()}"><input type="checkbox" id="contact-${index}" class="contact-item" data-id="${
+      contact.id
+    }" checked /><div><label class="contact-inner-align" for="contact-${index}">${
+      contact.name
+    }<small class="dim">+${contact.number}</small></label></div></div></div>`;
+  });
+
+  document.querySelectorAll(".contact-item").forEach((item) => {
+    item.addEventListener("change", () => {
+      console.log("changed");
+      updateSelectedCount();
+    });
+  });
 });
 
 window.electronAPI.onClientDisconenct(() => {
@@ -87,6 +100,8 @@ selectAllBtn.addEventListener("click", () => {
   document.querySelectorAll(".contact-item").forEach((item) => {
     item.checked = true;
   });
+
+  updateSelectedCount();
 });
 
 // deselect all contacts
@@ -94,17 +109,9 @@ deselectAllBtn.addEventListener("click", () => {
   document.querySelectorAll(".contact-item").forEach((item) => {
     item.checked = false;
   });
-});
 
-function populateContactList(name, contactList) {
-  contactList.forEach((contact, index) => {
-    contactCheckboxes.innerHTML += `<div class="contact-checkitem" data-name="${contact.name.toLowerCase()}"><input type="checkbox" id="contact-${index}" class="contact-item" data-id="${
-      contact.id
-    }" checked /><div><label class="contact-inner-align" for="contact-${index}">${
-      contact.name
-    }<small class="dim">+${contact.number}</small></label></div></div></div>`;
-  });
-}
+  updateSelectedCount();
+});
 
 function updateContactListDisplay() {
   const searchQuery = searchQueryField.value.toLowerCase();
@@ -125,4 +132,11 @@ function resetContactList() {
   contactCheckItems.forEach((contact) => {
     contact.style.display = "flex";
   });
+}
+
+function updateSelectedCount() {
+  const count = document.getElementById("checked-count");
+  const list = document.querySelectorAll(".contact-item:checked");
+
+  count.innerText = list.length;
 }
