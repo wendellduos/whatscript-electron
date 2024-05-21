@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap");
 
 :root {
+  --red: #e61c00;
   --green-logo: #00e676;
   --green-interface: #00a884;
   --green-text: #03816b;
@@ -61,7 +62,6 @@
   border-left: solid 1px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
   background-color: white;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   overflow: hidden;
 }
 
@@ -322,6 +322,59 @@ header #lettering {
 
 #contacts #search-query:hover {
   border: solid 1px rgba(0, 0, 0, 0.5);
+}
+
+#contacts #contact-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#deselect-all-btn,
+#select-all-btn {
+  position: relative;
+  height: 1.2rem;
+  aspect-ratio: 1/1;
+  border: none;
+  background-color: transparent;
+  padding: 0.2rem;
+}
+
+#deselect-all-btn:hover,
+#select-all-btn:hover {
+  cursor: pointer;
+}
+
+#deselect-all-btn:hover .tooltip,
+#select-all-btn:hover .tooltip {
+  display: inline;
+}
+
+#deselect-all-btn:hover #deselect-all-icon {
+  fill: var(--red);
+}
+
+#select-all-btn:hover #select-all-icon {
+  fill: var(--green-interface);
+}
+
+#deselect-all-icon,
+#select-all-icon {
+  fill: rgba(0, 0, 0, 0.5);
+}
+
+.tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  padding: 0.3rem;
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  transform: translate(-100%, -100%);
 }
 
 #contacts #contact-checkboxes {

@@ -6,6 +6,8 @@ const sendTestMessageBtn = document.getElementById("send-test-msg-btn");
 const sendMessageBtn = document.getElementById("send-msg-btn");
 const contactCheckboxes = document.getElementById("contact-checkboxes");
 const searchQueryField = document.getElementById("search-query");
+const deselectAllBtn = document.getElementById("deselect-all-btn");
+const selectAllBtn = document.getElementById("select-all-btn");
 
 let userData = {
   name: "",
@@ -67,7 +69,8 @@ sendMessageBtn.addEventListener("click", () => {
   });
 
   const msgBody = messageInput.value;
-  window.electronAPI.sendMessage(msgBody, userIds);
+  // window.electronAPI.sendMessage(msgBody, userIds);
+  console.log(userIds);
 });
 
 // search
@@ -77,6 +80,20 @@ searchQueryField.addEventListener("input", () => {
   } else {
     resetContactList();
   }
+});
+
+// select all contacts
+selectAllBtn.addEventListener("click", () => {
+  document.querySelectorAll(".contact-item").forEach((item) => {
+    item.checked = true;
+  });
+});
+
+// deselect all contacts
+deselectAllBtn.addEventListener("click", () => {
+  document.querySelectorAll(".contact-item").forEach((item) => {
+    item.checked = false;
+  });
 });
 
 function populateContactList(name, contactList) {
