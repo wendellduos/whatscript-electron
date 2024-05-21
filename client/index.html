@@ -104,6 +104,20 @@
               id="message"
               placeholder="Escreva o texto aqui..."
             ></textarea>
+            <label id="img-msg-label" for="img-msg">
+              Selecione uma imagem...
+            </label>
+            <input
+              id="img-msg"
+              type="file"
+              accept="image/jpeg, image/jpg, image/png"
+              style="display: none"
+            />
+            <div id="send-btns-label-wrp">
+              <div id="send-btns-label">
+                <small class="dim">ENVIAR PARA</small>
+              </div>
+            </div>
             <div id="send-btns">
               <button type="button" id="send-test-msg-btn">eu mesmo</button>
               <button type="button" id="send-msg-btn">
@@ -124,8 +138,8 @@
 
         <div id="contact-toolbar">
           <small class="dim"
-            >Selecionados: <span id="checked-count"></span
-          ></small>
+            >Selecionados: <span id="checked-count">0</span></small
+          >
           <div>
             <button type="button" id="deselect-all-btn">
               <svg

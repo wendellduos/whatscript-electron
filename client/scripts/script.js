@@ -50,10 +50,11 @@ window.electronAPI.onClientReady((userName, contacts) => {
 
   document.querySelectorAll(".contact-item").forEach((item) => {
     item.addEventListener("change", () => {
-      console.log("changed");
       updateSelectedCount();
     });
   });
+
+  updateSelectedCount();
 });
 
 window.electronAPI.onClientDisconenct(() => {
