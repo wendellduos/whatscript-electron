@@ -1,14 +1,6 @@
-const loginBtn = document.getElementById("login-btn");
-
 loginBtn.addEventListener("click", () => {
   handleLogin();
 });
-
-// window.addEventListener("keydown", ({ key }) => {
-//   if (key === "Enter") {
-//     handleLogin();
-//   }
-// });
 
 // this logic will be updated
 function handleLogin() {
@@ -27,8 +19,6 @@ function handleLogin() {
       duration: 4000,
       type: "success",
     });
-
-    const loginSection = document.getElementById("login");
 
     loginSection.style.opacity = "0";
 

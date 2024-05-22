@@ -1,23 +1,4 @@
-const qrCodeSection = document.getElementById("qr-code-section");
-const qrDisplay = document.getElementById("qr-display");
-const formSection = document.getElementById("form-section");
-const messageInput = document.getElementById("message");
-const sendTestMessageBtn = document.getElementById("send-test-msg-btn");
-const sendMessageBtn = document.getElementById("send-msg-btn");
-const contactCheckboxes = document.getElementById("contact-checkboxes");
-const searchQueryField = document.getElementById("search-query");
-const deselectAllBtn = document.getElementById("deselect-all-btn");
-const selectAllBtn = document.getElementById("select-all-btn");
-const imgMsgLabel = document.getElementById("img-msg-label");
-const imgMsg = document.getElementById("img-msg");
-const imageNameEl = document.getElementById("image-name");
-
-let userData = {
-  name: "",
-  contactList: [],
-};
-
-window.electronAPI.handleQr((qr) => {
+API.onQr((qr) => {
   qrDisplay.innerHTML = "";
 
   new QRCode(qrDisplay, {
@@ -30,7 +11,7 @@ window.electronAPI.handleQr((qr) => {
   });
 });
 
-window.electronAPI.onClientReady((userName, contacts) => {
+API.onClientReady((userName, contacts) => {
   formSection.style.display = "block";
   qrCodeSection.style.display = "none";
   qrDisplay.innerHTML = "";
@@ -39,7 +20,6 @@ window.electronAPI.onClientReady((userName, contacts) => {
     type: "info",
   });
 
-  const contactCount = document.getElementById("contact-count");
   contactCount.innerText = contacts.length;
   contactCount.style.display = "inline";
 
@@ -51,7 +31,10 @@ window.electronAPI.onClientReady((userName, contacts) => {
     }<small class="dim">+${contact.number}</small></label></div></div></div>`;
   });
 
-  document.querySelectorAll(".contact-item").forEach((item) => {
+  contactCheckItems = document.querySelectorAll(".contact-checkitem");
+  contactItemList = document.querySelectorAll(".contact-item");
+
+  contactItemList.forEach((item) => {
     item.addEventListener("change", () => {
       updateSelectedCount();
     });
@@ -60,12 +43,11 @@ window.electronAPI.onClientReady((userName, contacts) => {
   updateSelectedCount();
 });
 
-window.electronAPI.onClientDisconenct(() => {
+API.onClientDisconenct(() => {
   formSection.style.display = "none";
   qrCodeSection.style.display = "block";
 
   popup("Usuário desconectado.", {
-    display: 4000,
     type: "warning",
   });
 });
@@ -74,29 +56,26 @@ imgMsg.addEventListener("change", () => {
   imageNameEl.innerHTML = imgMsg.files[0].name;
 
   if (hasImageSelected()) {
-    imgMsgLabel.classList.add("has-img");
+    imgMsgSelector.classList.add("has-img");
   } else {
-    imgMsgLabel.classList.remove("has-img");
+    imgMsgSelector.classList.remove("has-img");
   }
 });
 
 // send to user's own number
 sendTestMessageBtn.addEventListener("click", () => {
-  const msgBody = messageInput.value;
-  window.electronAPI.sendTestMessage(msgBody);
+  API.sendTestMessage(messageInput.value);
 });
 
 // send to all selected contacts
 sendMessageBtn.addEventListener("click", () => {
   const userIds = [];
-  const checkedContacts = document.querySelectorAll(".contact-item:checked");
 
-  checkedContacts.forEach((contact) => {
+  checkedContacts().forEach((contact) => {
     userIds.push(contact.dataset.id);
   });
 
-  const msgBody = messageInput.value;
-  // window.electronAPI.sendMessage(msgBody, userIds);
+  // API.sendMessage(messageInput.value, userIds);
   console.log(userIds);
 });
 
@@ -105,13 +84,13 @@ searchQueryField.addEventListener("input", () => {
   if (searchQueryField.value) {
     updateContactListDisplay();
   } else {
-    resetContactList();
+    resetContactListDisplay();
   }
 });
 
 // select all contacts
 selectAllBtn.addEventListener("click", () => {
-  document.querySelectorAll(".contact-item").forEach((item) => {
+  contactItemList.forEach((item) => {
     item.checked = true;
   });
 
@@ -120,45 +99,9 @@ selectAllBtn.addEventListener("click", () => {
 
 // deselect all contacts
 deselectAllBtn.addEventListener("click", () => {
-  document.querySelectorAll(".contact-item").forEach((item) => {
+  contactItemList.forEach((item) => {
     item.checked = false;
   });
 
   updateSelectedCount();
 });
-
-function updateContactListDisplay() {
-  const searchQuery = searchQueryField.value.toLowerCase();
-  const contactCheckItems = document.querySelectorAll(".contact-checkitem");
-
-  contactCheckItems.forEach((contact) => {
-    if (!contact.dataset.name.includes(searchQuery)) {
-      contact.style.display = "none";
-    } else {
-      contact.style.display = "flex";
-    }
-  });
-}
-
-function resetContactList() {
-  const contactCheckItems = document.querySelectorAll(".contact-checkitem");
-
-  contactCheckItems.forEach((contact) => {
-    contact.style.display = "flex";
-  });
-}
-
-function updateSelectedCount() {
-  const count = document.getElementById("checked-count");
-  const list = document.querySelectorAll(".contact-item:checked");
-
-  count.innerText = list.length;
-}
-
-function hasImageSelected() {
-  if (imgMsg.files[0].name) {
-    return true;
-  } else {
-    return false;
-  }
-}

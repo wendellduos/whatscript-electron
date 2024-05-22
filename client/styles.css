@@ -237,7 +237,7 @@ header #lettering {
 
 #form-section {
   display: none;
-  min-width: calc(450px - 2rem);
+  min-width: calc(440px - 2rem);
 }
 
 #form-section > h2 {
@@ -268,7 +268,7 @@ header #lettering {
   margin-bottom: 1rem;
 }
 
-#img-msg-label {
+#img-msg-selector {
   position: relative;
   display: flex;
   align-items: center;
@@ -285,16 +285,16 @@ header #lettering {
   background-color: var(--green-interface) !important;
 }
 
-#img-msg-label:hover {
+#img-msg-selector:hover {
   background-color: black;
   cursor: pointer;
 }
 
-#img-msg-label:hover .tooltip {
+#img-msg-selector:hover .tooltip {
   display: inline;
 }
 
-#img-msg-label > img {
+#img-msg-selector > img {
   width: 75%;
 }
 
