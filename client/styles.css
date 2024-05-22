@@ -177,6 +177,10 @@ header #lettering {
 }
 
 #main-content-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
   width: calc(100vw - 299px);
   height: calc(100vh - 4rem - 1px);
   padding: 1rem;
@@ -250,15 +254,26 @@ header #lettering {
   text-transform: uppercase;
 }
 
+#preview-img {
+  width: 100%;
+}
+
+#preview-img > img {
+  border-radius: 0.5rem;
+  border-top-left-radius: unset;
+  width: 100%;
+}
+
 #message {
   width: 100%;
-  max-width: calc(500px + 1rem);
   aspect-ratio: 4/2.5;
   margin-block: 1rem;
   padding: 1rem;
   border: none;
-  border-radius: 3px;
-  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  border-top-left-radius: unset;
+  background-color: black;
+  color: white;
   font-size: 1rem;
   letter-spacing: 0.2px;
   line-height: 1.1rem;
@@ -280,7 +295,7 @@ header #lettering {
   width: 2rem;
   aspect-ratio: 1/1;
   padding: 0.5rem;
-  border-radius: 3px;
+  border-radius: 1rem;
   background-color: rgba(0, 0, 0, 0.5);
   transition: 0.2s background-color ease-out;
 }

@@ -62,6 +62,14 @@ imgMsg.addEventListener("change", () => {
 
   if (hasImageSelected()) {
     imgMsgSelector.classList.add("has-img");
+
+    // show selected image on preview
+    // ! does it have any use?
+    // let reader = new FileReader();
+    // reader.onload = (e) => {
+    //   previewImg.innerHTML = `<img src="${e.target.result}" alt="imagem selecionada para mensagem" />`;
+    // };
+    // reader.readAsDataURL(imgMsg.files[0]);
   } else {
     imgMsgSelector.classList.remove("has-img");
   }
