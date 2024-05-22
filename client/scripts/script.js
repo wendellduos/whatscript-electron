@@ -8,6 +8,9 @@ const contactCheckboxes = document.getElementById("contact-checkboxes");
 const searchQueryField = document.getElementById("search-query");
 const deselectAllBtn = document.getElementById("deselect-all-btn");
 const selectAllBtn = document.getElementById("select-all-btn");
+const imgMsgLabel = document.getElementById("img-msg-label");
+const imgMsg = document.getElementById("img-msg");
+const imageNameEl = document.getElementById("image-name");
 
 let userData = {
   name: "",
@@ -65,6 +68,16 @@ window.electronAPI.onClientDisconenct(() => {
     display: 4000,
     type: "warning",
   });
+});
+
+imgMsg.addEventListener("change", () => {
+  imageNameEl.innerHTML = imgMsg.files[0].name;
+
+  if (hasImageSelected()) {
+    imgMsgLabel.classList.add("has-img");
+  } else {
+    imgMsgLabel.classList.remove("has-img");
+  }
 });
 
 // send to user's own number
@@ -140,4 +153,12 @@ function updateSelectedCount() {
   const list = document.querySelectorAll(".contact-item:checked");
 
   count.innerText = list.length;
+}
+
+function hasImageSelected() {
+  if (imgMsg.files[0].name) {
+    return true;
+  } else {
+    return false;
+  }
 }
