@@ -1,3 +1,4 @@
+const tooltips = document.querySelectorAll(".tooltip");
 const loginSection = document.getElementById("login");
 const loginBtn = document.getElementById("login-btn");
 const qrCodeSection = document.getElementById("qr-code-section");

@@ -52,6 +52,10 @@
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
+.tooltip-parent:hover > .tooltip {
+  display: inline;
+}
+
 .left {
   transform: translate(-100%, -100%);
   left: 0;
@@ -290,10 +294,6 @@ header #lettering {
   cursor: pointer;
 }
 
-#img-msg-selector:hover .tooltip {
-  display: inline;
-}
-
 #img-msg-selector > img {
   width: 75%;
 }
@@ -431,11 +431,6 @@ header #lettering {
 #deselect-all-btn:hover,
 #select-all-btn:hover {
   cursor: pointer;
-}
-
-#deselect-all-btn:hover .tooltip,
-#select-all-btn:hover .tooltip {
-  display: inline;
 }
 
 #deselect-all-btn:hover #deselect-all-icon {

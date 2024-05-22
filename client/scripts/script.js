@@ -1,3 +1,8 @@
+// create tooltip functionality on parent elements
+tooltips.forEach((tooltip) => {
+  tooltip.parentElement.classList.add("tooltip-parent");
+});
+
 API.onQr((qr) => {
   qrDisplay.innerHTML = "";
 
