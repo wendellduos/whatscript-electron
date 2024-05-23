@@ -98,12 +98,10 @@
           </section>
 
           <section id="form-section">
-            <h2>nova mensagem</h2>
-
             <textarea
               name="message"
               id="message"
-              placeholder="Escreva o texto aqui..."
+              placeholder="Escreva sua mensagem aqui..."
             ></textarea>
 
             <div id="image-select-wrp">
@@ -117,9 +115,12 @@
                 accept="image/jpeg, image/jpg, image/png"
                 style="display: none"
               />
-
               <p id="image-name" class="dim bold"></p>
+              <button type="button" id="remove-img-btn">
+                <img src="./assets/icons/xmark.svg" alt="icone de um X" />
+              </button>
             </div>
+
             <div id="send-btns-label-wrp">
               <div id="send-btns-label">
                 <small class="dim">ENVIAR PARA</small>

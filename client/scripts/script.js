@@ -17,7 +17,7 @@ API.onQr((qr) => {
 });
 
 API.onClientReady((userName, contacts) => {
-  formSection.style.display = "block";
+  formSection.style.display = "flex";
   qrCodeSection.style.display = "none";
   qrDisplay.innerHTML = "";
 
@@ -60,19 +60,14 @@ API.onClientDisconenct(() => {
 imgMsg.addEventListener("change", () => {
   imageNameEl.innerHTML = imgMsg.files[0].name;
 
-  if (hasImageSelected()) {
-    imgMsgSelector.classList.add("has-img");
+  updateImageSelectorDisplay();
+});
 
-    // show selected image on preview
-    // ! does it have any use?
-    // let reader = new FileReader();
-    // reader.onload = (e) => {
-    //   previewImg.innerHTML = `<img src="${e.target.result}" alt="imagem selecionada para mensagem" />`;
-    // };
-    // reader.readAsDataURL(imgMsg.files[0]);
-  } else {
-    imgMsgSelector.classList.remove("has-img");
-  }
+removeImageBtn.addEventListener("click", () => {
+  imgMsg.value = null;
+  imageNameEl.innerHTML = "";
+
+  updateImageSelectorDisplay();
 });
 
 // send to user's own number

@@ -21,9 +21,19 @@ function updateSelectedCount() {
 }
 
 function hasImageSelected() {
-  if (imgMsg.files[0].name) {
+  if (imgMsg.value) {
     return true;
   } else {
     return false;
+  }
+}
+
+function updateImageSelectorDisplay() {
+  if (hasImageSelected()) {
+    imgMsgSelector.classList.add("has-img");
+    removeImageBtn.style.display = "flex";
+  } else {
+    imgMsgSelector.classList.remove("has-img");
+    removeImageBtn.style.display = "none";
   }
 }

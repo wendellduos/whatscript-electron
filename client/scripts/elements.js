@@ -8,6 +8,7 @@ const messageInput = document.getElementById("message");
 const imgMsgSelector = document.getElementById("img-msg-selector");
 const imgMsg = document.getElementById("img-msg");
 const imageNameEl = document.getElementById("image-name");
+const removeImageBtn = document.getElementById("remove-img-btn");
 const sendTestMessageBtn = document.getElementById("send-test-msg-btn");
 const sendMessageBtn = document.getElementById("send-msg-btn");
 const contactCheckboxes = document.getElementById("contact-checkboxes");
