@@ -1,8 +1,7 @@
 const { app, BrowserWindow } = require("electron/main");
-const { Client, MessageMedia } = require("whatsapp-web.js");
+const { Client, MessageMedia, LocalAuth } = require("whatsapp-web.js");
 const path = require("node:path");
 const { ipcMain } = require("electron");
-const { url } = require("node:inspector");
 
 let client;
 let contactList = [];
@@ -58,6 +57,7 @@ const createWindow = () => {
 
   function initClient() {
     client = new Client({
+      // authStrategy: new LocalAuth(),
       webVersionCache: {
         type: "remote",
         remotePath:
@@ -121,4 +121,8 @@ app.whenReady().then(() => {
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
+
+  // client = {};
+  // contactList = [];
+  // user = {};
 });

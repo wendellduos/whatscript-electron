@@ -1,0 +1,38 @@
+2024/05/23-18:38:22.019 351d Reusing MANIFEST /home/wendel/Documents/code/whatscript-electron/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/05/23-18:38:22.019 351d Recovering log #471
+2024/05/23-18:38:22.146 351d Reusing old log /home/wendel/Documents/code/whatscript-electron/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000471.log 
+2024/05/23-18:38:53.695 352f Level-0 table #487: started
+2024/05/23-18:38:53.732 352f Level-0 table #487: 1223713 bytes OK
+2024/05/23-18:38:53.747 352f Delete type=0 #471
+2024/05/23-18:38:54.240 352f Compacting 1@0 + 1@1 files
+2024/05/23-18:38:54.310 352f Generated table #488@0: 20486 keys, 508881 bytes
+2024/05/23-18:38:54.317 352f Generated table #489@0: 18 keys, 823 bytes
+2024/05/23-18:38:54.317 352f Compacted 1@0 + 1@1 files => 509704 bytes
+2024/05/23-18:38:54.330 352f compacted to: files[ 0 2 10 0 0 0 0 ]
+2024/05/23-18:38:54.330 352f Delete type=2 #474
+2024/05/23-18:38:54.330 352f Delete type=2 #487
+2024/05/23-18:38:54.547 3520 Compacting 1@1 + 10@2 files
+2024/05/23-18:38:54.616 3520 Generated table #490@1: 29700 keys, 2195897 bytes
+2024/05/23-18:38:54.659 3520 Generated table #491@1: 4539 keys, 2160657 bytes
+2024/05/23-18:38:54.703 3520 Generated table #492@1: 4337 keys, 2167552 bytes
+2024/05/23-18:38:54.753 3520 Generated table #493@1: 13128 keys, 2176650 bytes
+2024/05/23-18:38:54.826 3520 Generated table #494@1: 32090 keys, 2249016 bytes
+2024/05/23-18:38:54.897 3520 Generated table #495@1: 27677 keys, 2225128 bytes
+2024/05/23-18:38:54.942 3520 Generated table #496@1: 11451 keys, 2134878 bytes
+2024/05/23-18:38:55.035 3520 Generated table #497@1: 107331 keys, 2257711 bytes
+2024/05/23-18:38:55.309 3520 Generated table #498@1: 104816 keys, 2255618 bytes
+2024/05/23-18:38:55.429 3520 Generated table #499@1: 104647 keys, 2255123 bytes
+2024/05/23-18:38:55.438 3520 Generated table #500@1: 2622 keys, 59575 bytes
+2024/05/23-18:38:55.438 3520 Compacted 1@1 + 10@2 files => 22137805 bytes
+2024/05/23-18:38:55.452 3520 compacted to: files[ 0 1 11 0 0 0 0 ]
+2024/05/23-18:38:55.452 3520 Delete type=2 #475
+2024/05/23-18:38:55.452 3520 Delete type=2 #476
+2024/05/23-18:38:55.452 3520 Delete type=2 #477
+2024/05/23-18:38:55.453 3520 Delete type=2 #478
+2024/05/23-18:38:55.453 3520 Delete type=2 #479
+2024/05/23-18:38:55.453 3520 Delete type=2 #480
+2024/05/23-18:38:55.453 3520 Delete type=2 #481
+2024/05/23-18:38:55.453 3520 Delete type=2 #482
+2024/05/23-18:38:55.453 3520 Delete type=2 #483
+2024/05/23-18:38:55.453 3520 Delete type=2 #484
+2024/05/23-18:38:55.453 3520 Delete type=2 #488

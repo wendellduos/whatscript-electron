@@ -90,36 +90,61 @@ sendTestMessageBtn.addEventListener("click", () => {
   } else {
     API.sendTestMessage(messageInput.value);
   }
+
+  popup("Mensagem enviada!", {
+    duration: 3000,
+    type: "success",
+  });
 });
 
-// send to all selected contacts
-sendMessageBtn.addEventListener("click", () => {
-  const userIds = [];
+// timeout animation and message sengind logic
+sendMessageBtn.addEventListener("mousedown", () => {
+  let timeout = setTimeout(() => {
+    timeoutAnimation.style.opacity = 0;
 
-  checkedContacts().forEach((contact) => {
-    userIds.push(contact.dataset.id);
-  });
+    const userIds = [];
 
-  if (hasImageSelected()) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const imgData = {
-        data: e.target.result.split(":", 2)[1].split(";", 1)[0],
-        base64: e.target.result.split(",", 2)[1],
+    checkedContacts().forEach((contact) => {
+      userIds.push(contact.dataset.id);
+    });
+
+    if (hasImageSelected()) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const imgData = {
+          data: e.target.result.split(":", 2)[1].split(";", 1)[0],
+          base64: e.target.result.split(",", 2)[1],
+        };
+        API.sendMediaMessage(
+          messageInput.value,
+          userIds,
+          imgData.data,
+          imgData.base64
+        );
       };
+      reader.readAsDataURL(imgMsg.files[0]);
+    } else {
+      API.sendMessage(messageInput.value, userIds);
+    }
 
-      API.sendMediaMessage(
-        messageInput.value,
-        userIds,
-        imgData.data,
-        imgData.base64
-      );
-    };
+    popup("Mensagem enviada!", {
+      duration: 3000,
+      type: "success",
+    });
+  }, 2000);
 
-    reader.readAsDataURL(imgMsg.files[0]);
-  } else {
-    API.sendMessage(messageInput.value, userIds);
-  }
+  timeoutAnimation.style.opacity = 1;
+  timeoutBar.style.animationPlayState = "running";
+
+  sendMessageBtn.addEventListener("mouseup", () => {
+    clearTimeout(timeout);
+
+    timeoutBar.style.animation = "none";
+    timeoutBar.offsetHeight;
+    timeoutBar.style.animation = "move-bar 2s linear infinite forwards";
+    timeoutBar.style.animationPlayState = "paused";
+    timeoutAnimation.style.opacity = 0;
+  });
 });
 
 // search
