@@ -1,7 +1,8 @@
 const { app, BrowserWindow } = require("electron/main");
-const { Client } = require("whatsapp-web.js");
+const { Client, MessageMedia } = require("whatsapp-web.js");
 const path = require("node:path");
 const { ipcMain } = require("electron");
+const { url } = require("node:inspector");
 
 let client;
 let contactList = [];
@@ -22,10 +23,35 @@ const createWindow = () => {
     client.sendMessage(user.id, msg);
   });
 
+  ipcMain.on("test-media-message", async (event, msg, data, base64) => {
+    try {
+      const image = new MessageMedia(data, base64);
+      await client.sendMessage(user.id, image, {
+        caption: msg,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
   ipcMain.on("send-message", async (event, msg, ids) => {
     ids.forEach((id) => {
       client.sendMessage(id, msg);
     });
+  });
+
+  ipcMain.on("send-media-message", async (event, msg, ids, data, base64) => {
+    try {
+      const image = new MessageMedia(data, base64);
+
+      await ids.forEach((id) => {
+        client.sendMessage(id, image, {
+          caption: msg,
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   mainWindow.loadFile(path.join(__dirname, "client/index.html"));

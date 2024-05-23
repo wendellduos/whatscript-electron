@@ -72,7 +72,24 @@ removeImageBtn.addEventListener("click", () => {
 
 // send to user's own number
 sendTestMessageBtn.addEventListener("click", () => {
-  API.sendTestMessage(messageInput.value);
+  if (hasImageSelected()) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const imgData = {
+        data: e.target.result.split(":", 2)[1].split(";", 1)[0],
+        base64: e.target.result.split(",", 2)[1],
+      };
+
+      API.sendTestMediaMessage(
+        messageInput.value,
+        imgData.data,
+        imgData.base64
+      );
+    };
+    reader.readAsDataURL(imgMsg.files[0]);
+  } else {
+    API.sendTestMessage(messageInput.value);
+  }
 });
 
 // send to all selected contacts
@@ -83,8 +100,26 @@ sendMessageBtn.addEventListener("click", () => {
     userIds.push(contact.dataset.id);
   });
 
-  // API.sendMessage(messageInput.value, userIds);
-  console.log(userIds);
+  if (hasImageSelected()) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const imgData = {
+        data: e.target.result.split(":", 2)[1].split(";", 1)[0],
+        base64: e.target.result.split(",", 2)[1],
+      };
+
+      API.sendMediaMessage(
+        messageInput.value,
+        userIds,
+        imgData.data,
+        imgData.base64
+      );
+    };
+
+    reader.readAsDataURL(imgMsg.files[0]);
+  } else {
+    API.sendMessage(messageInput.value, userIds);
+  }
 });
 
 // search
