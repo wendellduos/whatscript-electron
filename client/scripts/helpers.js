@@ -21,12 +21,17 @@ function popup(message, { duration = 5000, type = "info" }) {
   }
 
   popupImgEl.innerHTML = icon;
-  popupEl.style.display = "flex";
   popupMsgEl.innerHTML = message;
+  popupEl.style.opacity = 1;
+  popupEl.style.bottom = "1rem";
+
+  setTimeout(() => {
+    popupEl.style.bottom = "0";
+    popupEl.style.opacity = 0;
+  }, duration);
 
   setTimeout(() => {
     popupImgEl.innerHTML = "";
-    popupEl.style.display = "none";
     popupMsgEl.innerHTML = "";
-  }, duration);
+  }, duration + 200);
 }
