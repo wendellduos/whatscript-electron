@@ -87,17 +87,24 @@ sendTestMessageBtn.addEventListener("click", () => {
       );
     };
     reader.readAsDataURL(imgMsg.files[0]);
-  } else {
-    API.sendTestMessage(messageInput.value);
-  }
 
-  popup("Mensagem enviada!", {
-    duration: 3000,
-    type: "success",
-  });
+    popup("Mensagem enviada!", {
+      duration: 3000,
+      type: "success",
+    });
+  } else {
+    if (messageInput.value === "") {
+      popup("A mensagem precisa ter conteúdo.", {
+        duration: 3000,
+        type: "warning",
+      });
+    } else {
+      API.sendTestMessage(messageInput.value);
+    }
+  }
 });
 
-// timeout animation and message sengind logic
+// timeout animation and message sendind logic
 sendMessageBtn.addEventListener("mousedown", () => {
   let timeout = setTimeout(() => {
     timeoutAnimation.style.opacity = 0;
@@ -108,29 +115,43 @@ sendMessageBtn.addEventListener("mousedown", () => {
       userIds.push(contact.dataset.id);
     });
 
-    if (hasImageSelected()) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const imgData = {
-          data: e.target.result.split(":", 2)[1].split(";", 1)[0],
-          base64: e.target.result.split(",", 2)[1],
-        };
-        API.sendMediaMessage(
-          messageInput.value,
-          userIds,
-          imgData.data,
-          imgData.base64
-        );
-      };
-      reader.readAsDataURL(imgMsg.files[0]);
+    if (checkedContacts().length === 0) {
+      popup("Nenhum contato selecionado.", {
+        duration: 3000,
+        type: "warning",
+      });
     } else {
-      API.sendMessage(messageInput.value, userIds);
-    }
+      if (hasImageSelected()) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const imgData = {
+            data: e.target.result.split(":", 2)[1].split(";", 1)[0],
+            base64: e.target.result.split(",", 2)[1],
+          };
+          API.sendMediaMessage(
+            messageInput.value,
+            userIds,
+            imgData.data,
+            imgData.base64
+          );
+        };
+        reader.readAsDataURL(imgMsg.files[0]);
 
-    popup("Mensagem enviada!", {
-      duration: 3000,
-      type: "success",
-    });
+        popup("Mensagem enviada!", {
+          duration: 3000,
+          type: "success",
+        });
+      } else {
+        if (messageInput.value === "") {
+          popup("A mensagem precisa ter conteúdo.", {
+            duration: 3000,
+            type: "warning",
+          });
+        } else {
+          API.sendMessage(messageInput.value, userIds);
+        }
+      }
+    }
   }, 2000);
 
   timeoutAnimation.style.opacity = 1;
