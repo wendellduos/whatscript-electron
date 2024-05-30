@@ -135,12 +135,12 @@ body {
   padding: 1rem;
 }
 
-#login-form-wrp svg:nth-child(1) {
+#login-form-wrp img:nth-child(1) {
   height: 3rem;
   fill: var(--accent);
 }
 
-#login-form-wrp svg:nth-child(2) {
+#login-form-wrp img:nth-child(2) {
   height: 2rem;
   fill: var(--accent);
 }
@@ -203,7 +203,6 @@ header {
 
 header #logo {
   height: 2rem;
-  fill: var(--accent);
 }
 
 #main-content-container {
