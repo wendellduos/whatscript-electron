@@ -18,8 +18,8 @@ API.onQr((qr) => {
     text: qr,
     width: 200,
     height: 200,
-    colorDark: "#000",
-    colorLight: "#fff",
+    colorDark: "#fff",
+    colorLight: "#303030",
     correctLevel: QRCode.CorrectLevel.H,
   });
 });

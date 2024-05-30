@@ -7,7 +7,9 @@
     --main: #303030;
     --font: #fff;
     --red: #e61c00;
-    --green-interface: #00a884;
+    --accent: #d4b04d;
+    --accent-light: #e6c15c;
+    --accent-dim: #5e5336;
     --shadow: 3px 3px 5px #242424;
   }
 }
@@ -21,7 +23,9 @@
     --main: #ffffff;
     --font: #242424;
     --red: #e61c00;
-    --green-interface: #00a884;
+    --accent: #d4b04d;
+    --accent-light: #e6c15c;
+    --accent-dim: #f5d888;
     --shadow: 3px 3px 5px var(--main-three);
   }
 }
@@ -38,7 +42,8 @@
 }
 
 *:focus {
-  outline: solid 2px var(--green-interface);
+  outline: solid 1px var(--accent-dim);
+  border: solid 1px var(--accent-dim) !important;
 }
 
 body {
@@ -130,12 +135,14 @@ body {
   padding: 1rem;
 }
 
-#login-form-wrp img:nth-child(1) {
+#login-form-wrp svg:nth-child(1) {
   height: 3rem;
+  fill: var(--accent);
 }
 
-#login-form-wrp img:nth-child(2) {
+#login-form-wrp svg:nth-child(2) {
   height: 2rem;
+  fill: var(--accent);
 }
 
 #login-form-wrp input[type="text"],
@@ -146,6 +153,7 @@ body {
   padding: 0.5rem;
   border: solid 1px var(--main-three);
   border-radius: 3px;
+  background-color: var(--main);
   transition: 0.2s border ease-out;
 }
 
@@ -161,12 +169,17 @@ body {
   width: 100%;
   max-width: 500px;
   height: 2.5rem;
-  border: solid 1px var(--main);
+  border: none;
   border-radius: 3px;
-  background-color: var(--main);
+  background-color: var(--accent);
   color: var(--font);
   font-weight: 500;
   cursor: pointer;
+  transition: background-color 0.2s ease-out;
+}
+
+#login-form-wrp input[type="submit"]:hover {
+  background-color: var(--accent-light);
 }
 
 main {
@@ -190,17 +203,13 @@ header {
 
 header #logo {
   height: 2rem;
-  fill: var(--font);
-}
-
-header #lettering {
-  height: 1.1rem;
+  fill: var(--accent);
 }
 
 #main-content-container {
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
   width: calc(100vw - 299px);
   height: calc(100vh - 4rem - 1px);
@@ -272,6 +281,12 @@ header #lettering {
   min-width: 440px;
 }
 
+#form-section > h2 {
+  font-size: 0.9rem;
+  color: var(--main-five);
+  text-transform: uppercase;
+}
+
 #message {
   width: 100%;
   aspect-ratio: 4/2.5;
@@ -310,7 +325,7 @@ header #lettering {
 }
 
 .has-img {
-  background-color: var(--green-interface) !important;
+  background-color: var(--accent) !important;
 }
 
 #img-msg-selector:hover {
@@ -378,17 +393,19 @@ header #lettering {
   max-width: 250px;
   height: 2.5rem;
   padding: 0.5rem;
-  border: solid 2px var(--main);
+  border: solid 2px var(--font);
   border-radius: 3px;
   background-color: var(--main);
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
-  transition: 0.2s background-color ease-out;
+  transition-property: background-color, border;
+  transition: 0.2s ease-out;
 }
 
 #send-btns #send-test-msg-btn:hover {
-  background-color: var(--main-one);
+  border: solid 2px var(--accent);
+  background-color: var(--accent-dim);
   cursor: pointer;
 }
 
@@ -398,14 +415,15 @@ header #lettering {
   max-width: 250px;
   height: 2.5rem;
   padding: 0.5rem;
-  border: solid 2px var(--main);
+  border: solid 2px var(--font);
   border-radius: 3px;
-  background-color: var(--main);
-  color: var(--font);
+  background-color: var(--font);
+  color: var(--main);
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
-  transition: 0.2s background-color ease-out;
+  transition-property: background-color, border;
+  transition: 0.2s ease-out;
 }
 
 #timeout-animation {
@@ -426,7 +444,7 @@ header #lettering {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--main);
+  background-color: var(--accent);
   animation: move-bar 2s linear infinite forwards;
   animation-play-state: paused;
 }
@@ -441,7 +459,8 @@ header #lettering {
 }
 
 #send-btns #send-msg-btn:hover {
-  background-color: var(--main-eight);
+  border: solid 2px var(--accent);
+  background-color: var(--accent);
   cursor: pointer;
 }
 
@@ -468,8 +487,8 @@ header #lettering {
   padding: 0.2rem 0.3rem;
   margin-left: 0.2rem;
   border-radius: 3px;
-  background-color: var(--main);
-  color: var(--font);
+  background-color: var(--accent);
+  color: var(--main);
   font-size: 0.7rem;
   font-weight: 700;
 }
@@ -515,7 +534,7 @@ header #lettering {
 }
 
 #select-all-btn:hover #select-all-icon {
-  fill: var(--green-interface);
+  fill: var(--accent);
 }
 
 #deselect-all-icon,
@@ -530,6 +549,15 @@ header #lettering {
   height: calc(100% - 4.8rem);
   padding: 0.2rem;
   overflow-y: scroll;
+  --scrollbar-color-track: var(--main);
+  --scrollbar-color-thumb: var(--accent-light);
+}
+
+@supports (scrollbar-width: auto) {
+  #contacts #contact-checkboxes {
+    scrollbar-color: var(--accent-dim) var(--main);
+    scrollbar-width: thin;
+  }
 }
 
 .contact-checkitem {
@@ -603,4 +631,8 @@ header #lettering {
 
 #popup-img > img {
   width: 100%;
+}
+
+#popup-info-icon {
+  fill: var(--font);
 }
