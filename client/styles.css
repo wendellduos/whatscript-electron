@@ -6,9 +6,6 @@
     --main-eight: rgba(255, 255, 255, 0.8);
     --main: #303030;
     --font: #fff;
-    --red: #e61c00;
-    --accent: #d4b04d;
-    --accent-light: #e6c15c;
     --accent-dim: #5e5336;
     --shadow: 3px 3px 5px #242424;
   }
@@ -22,12 +19,16 @@
     --main-eight: rgba(0, 0, 0, 0.8);
     --main: #ffffff;
     --font: #242424;
-    --red: #e61c00;
-    --accent: #d4b04d;
-    --accent-light: #e6c15c;
     --accent-dim: #f5d888;
     --shadow: 3px 3px 5px var(--main-three);
   }
+}
+
+:root {
+  --red: #e61c00;
+  --accent: #d4b04d;
+  --accent-light: #e6c15c;
+  --green: #00e676;
 }
 
 * {
@@ -44,6 +45,22 @@
 *:focus {
   outline: solid 1px var(--accent-dim);
   border: solid 1px var(--accent-dim) !important;
+}
+
+#top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 4rem;
+  z-index: 50;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+
+#top-bar > button {
+  -webkit-app-region: no-drag;
 }
 
 body {
@@ -328,7 +345,7 @@ header #logo {
 }
 
 #img-msg-selector:hover {
-  background-color: var(--main);
+  background-color: var(--accent-dim);
   cursor: pointer;
 }
 
@@ -533,7 +550,7 @@ header #logo {
 }
 
 #select-all-btn:hover #select-all-icon {
-  fill: var(--accent);
+  fill: var(--green);
 }
 
 #deselect-all-icon,
