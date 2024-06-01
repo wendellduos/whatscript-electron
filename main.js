@@ -17,7 +17,7 @@ const createWindow = () => {
     },
   });
 
-  Menu.setApplicationMenu(null);
+  // Menu.setApplicationMenu(null);
 
   initClient();
 
