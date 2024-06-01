@@ -8,6 +8,9 @@ contextBridge.exposeInMainWorld("API", {
     ),
   onClientDisconenct: (callback) =>
     ipcRenderer.on("user-disconnect", (_event) => callback()),
+
+  minimizeWindow: () => ipcRenderer.send("minimize"),
+  closeWindow: () => ipcRenderer.send("close"),
   sendTestMessage: (msg) => ipcRenderer.send("test-message", msg),
   sendTestMediaMessage: (msg, data, base64) =>
     ipcRenderer.send("test-media-message", msg, data, base64),

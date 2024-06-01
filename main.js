@@ -1,5 +1,5 @@
 const { app, BrowserWindow, Menu } = require("electron/main");
-const { Client, MessageMedia, LocalAuth } = require("whatsapp-web.js");
+const { Client, MessageMedia } = require("whatsapp-web.js");
 const path = require("node:path");
 const { ipcMain } = require("electron");
 
@@ -11,6 +11,8 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 1280,
     height: 720,
+    minWidth: 764,
+    minHeight: 515,
     frame: false,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -20,6 +22,17 @@ const createWindow = () => {
   // Menu.setApplicationMenu(null);
 
   initClient();
+
+  // minimize, maxmize, close app's window
+  ipcMain.on("minimize", () => {
+    const window = BrowserWindow.getFocusedWindow();
+    window.minimize();
+  });
+
+  ipcMain.on("close", () => {
+    const window = BrowserWindow.getFocusedWindow();
+    window.close();
+  });
 
   ipcMain.on("test-message", async (event, msg) => {
     client.sendMessage(user.id, msg);

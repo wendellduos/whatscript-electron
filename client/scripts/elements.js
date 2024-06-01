@@ -1,3 +1,5 @@
+const minimizeBtn = document.getElementById("min-btn");
+const closeBtn = document.getElementById("close-btn");
 const tooltips = document.querySelectorAll(".tooltip");
 const loginSection = document.getElementById("login");
 const loginBtn = document.getElementById("login-btn");

@@ -78,13 +78,10 @@
 }
 
 #top-bar > button:nth-child(1) {
-  background-color: var(--green);
-}
-#top-bar > button:nth-child(2) {
   background-color: var(--accent);
 }
 
-#top-bar > button:nth-child(3) {
+#top-bar > button:nth-child(2) {
   background-color: var(--red);
 }
 

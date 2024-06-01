@@ -78,6 +78,14 @@ removeImageBtn.addEventListener("click", () => {
   updateImageSelectorDisplay();
 });
 
+minimizeBtn.addEventListener("click", () => {
+  API.minimizeWindow();
+});
+
+closeBtn.addEventListener("click", () => {
+  API.closeWindow();
+});
+
 // send to user's own number
 sendTestMessageBtn.addEventListener("click", () => {
   if (hasImageSelected()) {
