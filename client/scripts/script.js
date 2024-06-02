@@ -4,7 +4,6 @@ tooltips.forEach((tooltip) => {
 });
 
 // theme colors
-
 addEventListener("load", () => {
   console.log(
     getComputedStyle(document.documentElement).getPropertyValue("--font")
@@ -12,22 +11,13 @@ addEventListener("load", () => {
 });
 
 API.onQr((qr) => {
-  qrDisplay.innerHTML = "";
-
-  new QRCode(qrDisplay, {
-    text: qr,
-    width: 200,
-    height: 200,
-    colorDark: "#fff",
-    colorLight: "#303030",
-    correctLevel: QRCode.CorrectLevel.H,
-  });
+  generatedQr.makeCode(qr);
 });
 
 API.onClientReady((userName, contacts) => {
   formSection.style.display = "flex";
   qrCodeSection.style.display = "none";
-  qrDisplay.innerHTML = "";
+  generatedQr.clear();
 
   popup(`<span class="bold">${userName}</span> conectado.`, {
     type: "info",
@@ -57,8 +47,13 @@ API.onClientReady((userName, contacts) => {
 });
 
 API.onClientDisconenct(() => {
-  formSection.style.display = "none";
   qrCodeSection.style.display = "block";
+  contactCheckboxes.innerHTML = "";
+  contactCount.innerText = "";
+  contactCount.style.display = "none";
+  formSection.style.display = "none";
+  searchQueryField.value = "";
+  updateSelectedCount();
 
   popup("Usuário desconectado.", {
     type: "warning",

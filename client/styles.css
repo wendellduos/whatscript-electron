@@ -47,6 +47,11 @@
   border: solid 1px var(--accent-dim) !important;
 }
 
+.no-focus {
+  outline: none !important;
+  border: none !important;
+}
+
 #top-bar {
   position: absolute;
   top: 0;
@@ -258,7 +263,7 @@ header #logo {
   flex-direction: column;
   gap: 1rem;
   height: calc(100% + 2px);
-  width: 300px;
+  width: 250px;
   padding: 1rem;
   border-left: solid 1px var(--main-one);
   background-color: var(--main);
@@ -402,7 +407,7 @@ header #logo {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  width: calc(100vw - 299px);
+  width: calc(100vw - 250px - 3rem);
   padding: 1rem;
   overflow: hidden;
 }
@@ -435,16 +440,18 @@ header #logo {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  height: 200px;
+  height: calc(200px + 2rem);
   aspect-ratio: 1/1;
   margin-left: 1rem;
+  border-radius: 5px;
+  background-color: white;
 }
 
 #spinner {
   height: 5rem;
   aspect-ratio: 1/1;
-  border: solid 0.2rem var(--main-one);
-  border-top: solid 0.2rem var(--font);
+  border: solid 0.2rem rgba(0, 0, 0, 0.1);
+  border-top: solid 0.2rem #303030;
   border-radius: 50%;
   animation: spin 1.5s cubic-bezier(0.46, 0.17, 0.27, 0.63) infinite forwards;
 }
@@ -455,12 +462,17 @@ header #logo {
   }
 }
 
+#qr-wrp > small {
+  color: rgba(0, 0, 0, 0.5);
+}
+
 #qr-display {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  padding: 1rem;
 }
 
 #form-section {
@@ -560,7 +572,8 @@ header #logo {
   margin: auto;
   border: solid 1px var(--main-three);
   border-bottom: none;
-  border-radius: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
 #send-btns-label > small {
@@ -657,11 +670,31 @@ header #logo {
 #toolbar {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
   height: calc(100% + 2px);
   width: 3rem;
-  padding: 1rem;
+  padding-block: 1rem;
   border-right: solid 1px var(--main-one);
   background-color: var(--main);
+}
+
+#toolbar > button {
+  width: 1.2rem;
+  aspect-ratio: 1/1;
+  border: none;
+  border-radius: 30px;
+  background-color: transparent;
+  transition: 0.2s opacity ease-out;
+}
+
+#toolbar > button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+#toolbar > button > svg {
+  fill: var(--font);
 }
 
 /* POPUP */

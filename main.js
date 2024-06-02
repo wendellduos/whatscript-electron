@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require("electron/main");
+const { app, BrowserWindow, Menu } = require("electron");
 const { Client, MessageMedia } = require("whatsapp-web.js");
 const path = require("node:path");
 const { ipcMain } = require("electron");
@@ -21,7 +21,17 @@ const createWindow = () => {
 
   // Menu.setApplicationMenu(null);
 
-  initClient();
+  ipcMain.on("login", () => {
+    initClient();
+  });
+
+  ipcMain.on("logout", () => {
+    client.destroy();
+
+    client = {};
+    contactList = [];
+    user = {};
+  });
 
   // minimize, maxmize, close app's window
   ipcMain.on("minimize", () => {
@@ -73,7 +83,6 @@ const createWindow = () => {
 
   function initClient() {
     client = new Client({
-      // authStrategy: new LocalAuth(),
       webVersionCache: {
         type: "remote",
         remotePath:
@@ -120,6 +129,10 @@ const createWindow = () => {
 
       client.destroy();
 
+      client = {};
+      contactList = [];
+      user = {};
+
       initClient();
     });
 
@@ -137,8 +150,4 @@ app.whenReady().then(() => {
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
-
-  // client = {};
-  // contactList = [];
-  // user = {};
 });

@@ -3,6 +3,7 @@ const closeBtn = document.getElementById("close-btn");
 const tooltips = document.querySelectorAll(".tooltip");
 const loginSection = document.getElementById("login");
 const loginBtn = document.getElementById("login-btn");
+const logoutBtn = document.getElementById("logout-btn");
 const qrCodeSection = document.getElementById("qr-code-section");
 const qrDisplay = document.getElementById("qr-display");
 const formSection = document.getElementById("form-section");
@@ -31,3 +32,11 @@ let contactItemList;
 
 // returns list of currently checked contact checkbox
 let checkedContacts = () => document.querySelectorAll(".contact-item:checked");
+
+let generatedQr = new QRCode(qrDisplay, {
+  width: 200,
+  height: 200,
+  colorDark: "#303030",
+  colorLight: "#fff",
+  correctLevel: QRCode.CorrectLevel.H,
+});

@@ -9,6 +9,8 @@ contextBridge.exposeInMainWorld("API", {
   onClientDisconenct: (callback) =>
     ipcRenderer.on("user-disconnect", (_event) => callback()),
 
+  userLoggedIn: () => ipcRenderer.send("login"),
+  userLoggedOut: () => ipcRenderer.send("logout"),
   minimizeWindow: () => ipcRenderer.send("minimize"),
   closeWindow: () => ipcRenderer.send("close"),
   sendTestMessage: (msg) => ipcRenderer.send("test-message", msg),
