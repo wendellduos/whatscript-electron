@@ -3,13 +3,6 @@ tooltips.forEach((tooltip) => {
   tooltip.parentElement.classList.add("tooltip-parent");
 });
 
-// theme colors
-addEventListener("load", () => {
-  console.log(
-    getComputedStyle(document.documentElement).getPropertyValue("--font")
-  );
-});
-
 API.onQr((qr) => {
   generatedQr.makeCode(qr);
 });

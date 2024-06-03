@@ -2,6 +2,7 @@ const minimizeBtn = document.getElementById("min-btn");
 const closeBtn = document.getElementById("close-btn");
 const tooltips = document.querySelectorAll(".tooltip");
 const loginSection = document.getElementById("login");
+const loginForm = document.getElementById("login-form-wrp");
 const loginBtn = document.getElementById("login-btn");
 const logoutBtn = document.getElementById("logout-btn");
 const qrCodeSection = document.getElementById("qr-code-section");

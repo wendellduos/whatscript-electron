@@ -1,4 +1,6 @@
-loginBtn.addEventListener("click", () => {
+loginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
   const form = {
     username: document.getElementById("username").value,
     usernameEl: document.getElementById("username"),
