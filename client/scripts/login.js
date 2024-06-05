@@ -56,6 +56,11 @@ loginForm.addEventListener("submit", (e) => {
       })
       .catch((error) => {
         console.error("An error occurred:", error);
+
+        popup("Erro desconhecido, contate um administrador.", {
+          type: "error",
+          duration: 4000,
+        });
       });
   }
 
